@@ -31,8 +31,9 @@ public class AOPTransformer implements ClassFileTransformer {
             // 返回null表示不修改类字节码，和返回classfileBuffer是一样的效果。
             return null;
         }
-        if (className.equals(this.className.replace('.', '/'))) {
-            ClassPool classPool = ClassPool.getDefault();
+        //if (className.equals(this.className.replace('.', '/'))) {
+            System.out.println("transform" + " " + this.className + " " + className);
+	    ClassPool classPool = ClassPool.getDefault();
             classPool.appendClassPath(new LoaderClassPath(loader));
             classPool.appendSystemPath();
             try {
@@ -45,7 +46,7 @@ public class AOPTransformer implements ClassFileTransformer {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        //}
         return classfileBuffer;
     }
 }
